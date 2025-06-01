@@ -444,7 +444,8 @@ impl Clone for OwnedJsValue {
 
 impl std::fmt::Debug for OwnedJsValue {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{:?}(_)", self.tag())
+        let value = self.js_to_string().unwrap_or("_".to_string());
+        write!(f, "{:?}({value})", self.tag())
     }
 }
 
